@@ -1,0 +1,23 @@
+Icecast Control: OBS plugin
+
+Sends OBS's stream audio to your Icecast stream (through the Icecast Control app),
+so radio listeners hear the same audio as your video stream. It starts and stops
+together with OBS streaming.
+
+Install
+  1. Make sure Icecast Control is installed and set up.
+  2. Double-click "Install OBS Plugin.command".
+     The first time, macOS may block it: open System Settings → Privacy & Security
+     and click "Open Anyway", then double-click it again.
+     (Or right-click the file → Open.)
+  3. In Icecast Control, set the Broadcast input to "OBS".
+
+That's it. Start streaming in OBS and Icecast goes live too.
+
+Options (OBS → Tools → Scripts → icecast-control-obs.lua)
+  • Audio track: use the track your stream uses (usually 1).
+  • Start and stop with OBS streaming: on by default.
+  • Start sending now / Stop sending: send audio without streaming video.
+
+Remove: double-click "Uninstall OBS Plugin.command".
+Manual install: OBS → Tools → Scripts → + → choose icecast-control-obs.lua.

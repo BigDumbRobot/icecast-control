@@ -1,0 +1,17 @@
+Icecast Control: install
+
+1. Drag "Icecast Control" onto the Applications folder.
+
+2. Open it from Applications. The first time, macOS will say it can't check the app
+   because it isn't from the App Store:
+     • Open System Settings → Privacy & Security.
+     • Scroll down and click "Open Anyway" next to "Icecast Control", then confirm.
+   (You only need to do this once.)
+
+3. A welcome guide walks you through the rest: your stream server, internet access,
+   and what audio to stream.
+
+Look for the antenna icon in the menu bar at the top of the screen.
+
+Streaming from OBS? Also download and install the separate OBS plugin
+(Icecast-Control-OBS-Plugin.zip) from the same download page.
