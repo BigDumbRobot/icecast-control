@@ -64,8 +64,7 @@ struct BroadcastCard: View {
                     .fill(broadcaster.obsConnected ? Color.green : Color.secondary.opacity(0.5))
                     .frame(width: 8, height: 8)
                 Text(broadcaster.obsConnected ? "Receiving audio from OBS"
-                     : obsPluginInstalled ? "Ready. Start streaming in OBS to go live."
-                     : "Waiting for OBS")
+                     : "Waiting for OBS. Open OBS with the Icecast Control script loaded.")
                     .font(.callout)
                     .fixedSize(horizontal: false, vertical: true)
                 Spacer(minLength: 0)
@@ -83,9 +82,6 @@ struct BroadcastCard: View {
                     }
                 }
             }
-            Toggle("Go live and stop together with OBS", isOn: $prefs.followOBS)
-                .font(.callout)
-                .toggleStyle(.checkbox)
         }
     }
 

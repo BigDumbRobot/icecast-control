@@ -40,7 +40,6 @@ final class Broadcaster: ObservableObject {
     private var captureRate: Double = 48_000
     /// True while the OBS script is sending audio.
     @Published private(set) var obsConnected = false
-    private var obsStopWork: DispatchWorkItem?
 
     private var process: Process?
     private var encoderRate: Double = 0
@@ -65,33 +64,22 @@ final class Broadcaster: ObservableObject {
         }
     }
 
-    /// OBS started or stopped sending (it follows OBS streaming when the script is set to).
+    /// The OBS script connected or disconnected. It sends whenever OBS is open,
+    /// streaming or not, so the OBS input always carries OBS's audio.
     private func obsChanged(connected: Bool, rate: Double) {
         obsConnected = connected
         guard selectedInput.isOBS else { return }
-        obsStopWork?.cancel()
         if connected {
             captureRate = rate
             if process != nil, rate != encoderRate {
                 stopEncoder()
                 retryAt = nil
             }
-            if prefs.followOBS && !wantsLive { goLive() }
             tick()
         } else {
             levels = [-120, -120]
+            // Pauses the broadcast; it resumes when OBS is back.
             stopEncoder()
-            // OBS stopped: end the broadcast too, unless it comes back within a few seconds.
-            if prefs.followOBS && wantsLive {
-                let work = DispatchWorkItem { [weak self] in
-                    MainActor.assumeIsolated {
-                        guard let self, !self.obsConnected, self.selectedInput.isOBS else { return }
-                        self.stop()
-                    }
-                }
-                obsStopWork = work
-                DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: work)
-            }
         }
     }
 
@@ -251,7 +239,7 @@ final class Broadcaster: ObservableObject {
         }
         guard process == nil else { return }
         if selectedInput.isOBS && !obsConnected {
-            state = .waiting("Waiting for OBS. Start streaming in OBS, or press \"Start sending now\" in its Icecast Control script.")
+            state = .waiting("Waiting for OBS. Open OBS with the Icecast Control script loaded (Tools → Scripts).")
             return
         }
         if !monitor.phase.isUp {

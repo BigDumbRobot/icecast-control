@@ -12,12 +12,11 @@ Install
      (Or right-click the file → Open.)
   3. In Icecast Control, set the Broadcast input to "OBS".
 
-That's it. Start streaming in OBS and Icecast goes live too.
+That's it. Whenever OBS is open, streaming or not, the OBS input in Icecast Control
+plays OBS's audio. Press Go Live in Icecast Control to put it on air.
 
 Options (OBS → Tools → Scripts → icecast-control-obs.lua)
   • Audio track: use the track your stream uses (usually 1).
-  • Start and stop with OBS streaming: on by default.
-  • Start sending now / Stop sending: send audio without streaming video.
 
 Remove: double-click "Uninstall OBS Plugin.command".
 Manual install: OBS → Tools → Scripts → + → choose icecast-control-obs.lua.

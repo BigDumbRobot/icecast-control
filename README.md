@@ -40,8 +40,8 @@ Stream OBS's audio to Icecast, so radio listeners hear exactly what your video s
    Security → Open Anyway.) It closes OBS for a moment, adds the plugin, and reopens OBS.
 3. In Icecast Control, set the Broadcast input to **OBS**.
 
-Now when you start streaming in OBS, Icecast goes live with the same audio and stops when you
-stop. Choose the audio track in OBS → Tools → Scripts → `icecast-control-obs.lua`.
+Now the OBS input plays OBS's audio whenever OBS is open, streaming or not; press Go Live to
+put it on air. Choose the audio track in OBS → Tools → Scripts → `icecast-control-obs.lua`.
 
 ## Letting listeners reach you
 

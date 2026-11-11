@@ -31,8 +31,6 @@ final class AppPreferences: ObservableObject {
     @Published var streamName: String { didSet { defaults.set(streamName, forKey: "streamName") } }
     @Published var streamGenre: String { didSet { defaults.set(streamGenre, forKey: "streamGenre") } }
     @Published var autoBroadcast: Bool { didSet { defaults.set(autoBroadcast, forKey: "autoBroadcast") } }
-    /// With the OBS input: go live when OBS starts sending, stop when it stops.
-    @Published var followOBS: Bool { didSet { defaults.set(followOBS, forKey: "followOBS") } }
     /// The welcome guide has been completed.
     @Published var setupComplete: Bool { didSet { defaults.set(setupComplete, forKey: "setupComplete") } }
 
@@ -50,7 +48,6 @@ final class AppPreferences: ObservableObject {
         streamName = defaults.string(forKey: "streamName") ?? "My Stream"
         streamGenre = defaults.string(forKey: "streamGenre") ?? "Various"
         autoBroadcast = defaults.object(forKey: "autoBroadcast") as? Bool ?? false
-        followOBS = defaults.object(forKey: "followOBS") as? Bool ?? true
         setupComplete = defaults.bool(forKey: "setupComplete")
 
         configPath = defaults.string(forKey: "configPath") ?? ServerSetup.managedConfigURL.path
